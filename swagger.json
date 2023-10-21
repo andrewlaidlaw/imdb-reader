@@ -1,0 +1,199 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "IMDB interface",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://bond-reader-al-andrewlaidlaw-db2-reader.apps.sky.pssc.mop.fr.ibm.com/"
+        },
+        {
+            "url": "https://imdb-apis-andrewlaidlaw-dev.apps.cyan.pssc.mop.fr.ibm.com/"
+        }
+    ],
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Service running message",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/film/bycharacter/{character}": {
+            "get": {
+                "description": "List all films with a specific character in them",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "character",
+                        "required": true,
+                        "description": "Character name to search by",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/film/byactor/{actor}": {
+            "get": {
+                "description": "Lst all the films where a specific actor has a main role",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "actor",
+                        "required": true,
+                        "description": "Name of actor to search by",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/character/{film}/{actor}": {
+            "get": {
+                "description": "Look up the character name played by a paricular actor in a specific film",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "film",
+                        "required": true,
+                        "description": "Name of film to search in",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "actor",
+                        "required": true,
+                        "description": "Name of actor to search by",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/actor/{film}/{character}": {
+            "get": {
+                "description": "Find the actor that played a particular character in a specified film",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "film",
+                        "required": true,
+                        "description": "Name of film to search in",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "character",
+                        "required": true,
+                        "description": "Name of character to search by",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/actor/{film}": {
+            "get": {
+                "description": "List all of the main cast members in a given film",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "film",
+                        "required": true,
+                        "description": "Name of film to search for",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/filmography/{actor}": {
+            "get": {
+                "description": "Find detailed information about all the films an actor has had a main role in",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "actor",
+                        "required": true,
+                        "description": "Name of actor to search by",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/healthz": {
+            "get": {
+                "description": "Basic Healthcheck",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/testconnection": {
+            "get": {
+                "description": "Test the database connection",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+}
